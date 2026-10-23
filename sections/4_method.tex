@@ -1,0 +1,24 @@
+\begin{samepage}
+\section{Method}
+\label{sec:method}
+\paragraph{Problem setup.}
+\label{sec:overview}
+A \planner{}, an \executor{}, and a \memory{} module form an illustrative
+interaction loop. Given history $h_t$ and available
+actions $\mathcal{A}$, a policy $\pi_\theta$ selects an action $a_t$:
+\begin{equation}
+  a_t \sim \pi_\theta(\,\cdot\mid h_t,\mathcal{A}),
+  \qquad h_{t+1}=h_t\mathbin{\Vert}(a_t,o_{t+1}),
+  \label{eq:interaction}
+\end{equation}
+where $o_{t+1}$ is a tool observation and $\Vert$ denotes concatenation.
+The history update applies only to executed actions, not the stop action.
+\end{samepage}
+
+\noindent\rpsStage{Stage 1: Plan.}
+The \planner{} selects an action using the task and the current history.
+
+\noindent\rpsStage{Stage 2: Execute and update.}
+The \executor{} runs the action and the \memory{} stores the observation.
+\Cref{alg:agent} makes the stopping rule explicit.
+\input{algorithms/1_agent_loop}

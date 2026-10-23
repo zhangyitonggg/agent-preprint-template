@@ -1,0 +1,19 @@
+\section{Implementation Details}
+\label{app:details}
+
+\subsection{Configuration}
+Replace the fields in \cref{tab:settings} with the settings used in your study.
+\input{tables/3_settings}
+
+\subsection{Prompt for the planner}
+\label{app:prompts}
+Include the exact instructions and variables used in your experiments.
+\begin{rpsprompt}{Illustrative agent prompt}
+SYSTEM: Complete the task using the available tools.
+Task: {task_description}
+Tools: {tool_names_and_interfaces}
+History: {interaction_history}
+
+Return a tool call with arguments or a final answer.
+Stop when the task is complete or the budget is exhausted.
+\end{rpsprompt}

@@ -1,0 +1,27 @@
+\begin{table}[H]
+  \centering
+  \caption{Formatting roles and their commands.}
+  \label{tab:style-key}
+  \small
+  \renewcommand{\arraystretch}{1.08}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Role} & \textbf{Command} & \textbf{Example} \\
+    \midrule
+    Our method & \rpsCode{\char92 rpsMethod} & \ourmethod{} \\
+    Baseline & \rpsCode{\char92 rpsBaseline} & \rpsBaseline{Baseline A} \\
+    Model & \rpsCode{\char92 rpsModel} & \rpsModel{ModelName} \\
+    Dataset & \rpsCode{\char92 rpsDataset} & \rpsDataset{DatasetName} \\
+    Benchmark & \rpsCode{\char92 rpsBenchmark} & \rpsBenchmark{Benchmark A} \\
+    Module with icon & \rpsCode{\char92 rpsComponent} & \planner{}, \executor{} \\
+    Method stage & \rpsCode{\char92 rpsStage} & \rpsStage{Stage 1: Plan.} \\
+    Key point & \rpsCode{\char92 rpsStrong} & \rpsStrong{Important finding} \\
+    New term & \rpsCode{\char92 rpsTerm} & \rpsTerm{interaction history} \\
+    Best / second & \rpsCode{\char92 rpsBest / \char92 rpsSecond}
+      & \rpsBest{best} / \rpsSecond{second} \\
+    Observation & \rpsCode{\char92 rpsObservation}
+      & Observation~\ref{obs:comparison} \\
+    Row emphasis & \rpsCode{\char92 ourscell} & \ourscell{Highlighted cell} \\
+    \bottomrule
+  \end{tabular}
+\end{table}

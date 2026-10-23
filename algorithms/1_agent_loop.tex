@@ -1,0 +1,14 @@
+\begin{algorithm}[htbp]
+\caption{Illustrative interaction loop for \ourmethod{}}
+\label{alg:agent}
+\begin{algorithmic}[1]
+  \Require Initial history $h_0$, action set $\mathcal{A}$, step budget $B$
+  \State $h\gets h_0$
+  \For{$t=0,\ldots,B-1$}
+    \State Sample $a\sim\pi_\theta(\,\cdot\mid h,\mathcal{A})$
+    \If{$a=\textsc{Stop}$} \State \textbf{break} \EndIf
+    \State Execute $a$, receive $o$, and update $h\gets h\mathbin{\Vert}(a,o)$
+  \EndFor
+  \State \Return $h$
+\end{algorithmic}
+\end{algorithm}

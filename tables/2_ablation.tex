@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Ablation-table template. Each row specifies a configuration;
+  performance values must come from the corresponding experiment.}
+  \label{tab:ablation}
+  \small
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llc@{}}
+    \toprule
+    \textbf{Configuration} & \textbf{Change} & \textbf{Success (\%)} \\
+    \midrule
+    Full method & All components enabled & -- \\
+    Without memory & Remove stored interaction history & -- \\
+    Fixed planner & Replace adaptive action selection & -- \\
+    \bottomrule
+  \end{tabular*}
+\end{table}

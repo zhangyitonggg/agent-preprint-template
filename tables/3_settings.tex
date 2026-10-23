@@ -1,0 +1,18 @@
+\begin{table}[H]
+  \centering
+  \caption{Configuration template for reproducibility.}
+  \label{tab:settings}
+  \small
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabularx}{\linewidth}{@{}lX@{}}
+    \toprule
+    \textbf{Item} & \textbf{Setting to report} \\
+    \midrule
+    Model & [Exact identifier and version] \\
+    Data & [Release, split, and preprocessing] \\
+    Sampling & [Temperature, token limit, and random seeds] \\
+    Tool budget & [Maximum calls, time limit, and retry policy] \\
+    Execution & [Software versions and hardware] \\
+    \bottomrule
+  \end{tabularx}
+\end{table}

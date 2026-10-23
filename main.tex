@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+% Compile: LC_ALL=C latexmk -pdf main.tex
+% Compile from this directory; all input paths are relative to main.tex.
+% Body: sections/; floats: figures/, algorithms/, tables/; images: assets/.
+\documentclass{article}
+\usepackage{preprint} % options: anonymous, monochrome, wide
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[capitalise,noabbrev,nameinlink]{cleveref}
+
+\newcommand{\ourmethod}{\rpsMethod{YourMethod}}
+\newcommand{\planner}{\rpsComponent{95}{Planner}}
+\newcommand{\executor}{\rpsComponent{96}{Executor}}
+\newcommand{\memory}{\rpsModule{Memory}}
+
+% Replace these placeholders with the actual title and author information.
+\title{Your Paper Title Goes Here\\A Concise and Informative Subtitle}
+\author[1]{First Author}
+\author[1]{Second Author}
+\author[1,\dagger]{Corresponding Author}
+\affiliation[1]{\groupname, Tsinghua University}
+\authornote[\dagger]{Corresponding author}
+\date{\today}
+\correspondence{\email{author@example.com}} % Replace with the contact email.
+% Uncomment after replacing the example values:
+% \metadata[Code]{\url{https://github.com/your-org/your-project}}
+% \metadata[Project]{\url{https://example.com}}
+% \runninghead{Short Paper Title}
+
+\begin{document}
+\maketitle
+
+\input{sections/0_abstract}
+\input{sections/1_introduction}
+\input{sections/2_related_work}
+\input{sections/3_motivation}
+\input{sections/4_method}
+\input{sections/5_experimental_setup}
+\input{sections/6_experimantal_results}
+\input{sections/7_conclusion}
+
+\bibliographystyle{preprint}
+\bibliography{references}
+
+\clearpage
+\appendix
+\input{appendix/1_implementation_details}
+\input{appendix/2_typography_key}
+
+\end{document}
