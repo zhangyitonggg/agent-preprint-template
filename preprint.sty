@@ -327,8 +327,10 @@
   % Logos identify the authors' institutions, so [anonymous] hides them.
   \if@preprint@anon\else
     \ifx\@logos\@empty\else
+      % Bring the first-page institutional signature closer to the page top.
+      \vspace*{-8mm}%
       \noindent\@logos\par
-      \vspace{0.6em}
+      \vspace{1pt}
     \fi
   \fi
   % All title lines (including subtitles) share the same face, size and weight.
@@ -387,7 +389,7 @@
   \if@preprint@toc\clearpage\tableofcontents\clearpage\fi
 }
 
-% The group template uses a text-only title area by default.
+% The sample main.tex supplies the university and group identity via \logos.
 
 % An institutional running head must not survive anonymous mode.
 \AtBeginDocument{%
