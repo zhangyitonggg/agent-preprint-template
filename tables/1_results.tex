@@ -6,7 +6,10 @@
   \small
   \renewcommand{\arraystretch}{1.15}
   \setlength{\tabcolsep}{5pt}
-  \begin{tabular}{@{}llcccc@{}}
+  % Keep the outer padding: cell backgrounds then end exactly at the rules.
+  \begin{tabularx}{\linewidth}{
+    *{2}{>{\raggedright\arraybackslash}X}
+    *{4}{>{\centering\arraybackslash}X}}
     \toprule
     & & \multicolumn{2}{c}{\rpsBenchmark{Benchmark A}}
         & \multicolumn{2}{c}{\rpsBenchmark{Benchmark B}} \\
@@ -21,5 +24,5 @@
       & \ourscell{\ourmethod{}} & \ourscell{--} & \ourscell{--}
         & \ourscell{--} & \ourscell{--} \\
     \bottomrule
-  \end{tabular}
+  \end{tabularx}
 \end{table}

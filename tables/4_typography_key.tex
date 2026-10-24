@@ -3,8 +3,9 @@
   \caption{Formatting roles and their commands.}
   \label{tab:style-key}
   \small
-  \renewcommand{\arraystretch}{1.08}
-  \begin{tabular}{@{}lll@{}}
+  \renewcommand{\arraystretch}{1.15}
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabularx}{\linewidth}{*{3}{>{\raggedright\arraybackslash}X}}
     \toprule
     \textbf{Role} & \textbf{Command} & \textbf{Example} \\
     \midrule
@@ -23,5 +24,5 @@
       & Observation~\ref{obs:comparison} \\
     Row emphasis & \rpsCode{\char92 ourscell} & \ourscell{Highlighted cell} \\
     \bottomrule
-  \end{tabular}
+  \end{tabularx}
 \end{table}

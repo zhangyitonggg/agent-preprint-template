@@ -1,8 +1,8 @@
 % !TeX program = pdflatex
 % Compile: LC_ALL=C latexmk -pdf main.tex
 % Compile from this directory; all input paths are relative to main.tex.
-% Body: sections/; floats: figures/, algorithms/, tables/; images: assets/.
-\documentclass[11pt]{article}
+% Body: sections/; floats: figures/, algorithms/, tables/; logos: assets/logos/.
+\documentclass[10pt]{article}
 \usepackage{preprint} % options: anonymous, monochrome, wide
 \usepackage{microtype}
 \usepackage{amsmath,amssymb}
@@ -10,6 +10,8 @@
 \usepackage{algpseudocode}
 \usepackage{multirow}
 \usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \usepackage{hyperref}
 \usepackage[capitalise,noabbrev,nameinlink]{cleveref}
 
@@ -18,26 +20,23 @@
 \newcommand{\executor}{\rpsComponent{96}{Executor}}
 \newcommand{\memory}{\rpsModule{Memory}}
 
+% A compact, left-aligned signature above the title rule.
+% Select Montserrat locally for the wordmark (TeX Live's montserrat fonts).
 \logos{%
-  \makebox[\linewidth][c]{\resizebox{0.85\linewidth}{!}{%
-    \mbox{%
-      \raisebox{-0.5\height}{%
-        \includegraphics[height=0.60in,
-          trim=396bp 15bp 424bp 5bp,clip]{assets/tsinghua-emblem.jpg}}%
-      \hspace{4pt}%
-      \raisebox{-0.5\height}{%
-        \fontsize{10.5}{12}\selectfont\mdseries\color{black!85}%
-        \shortstack[l]{Tsinghua\\University}}}%
-    \hspace{26pt}%
-    \mbox{%
-      \raisebox{-0.5\height}{%
-        \includegraphics[height=0.48in,
-          trim=0bp 0bp 0bp 120bp,clip]{assets/case.jpeg}}%
-      \hspace{7pt}%
-      \raisebox{-0.5\height}{%
-        \fontsize{10.5}{12}\selectfont\mdseries\color{black!85}%
-        \shortstack[l]{Tsinghua\\AI Agent Group}}}%
-  }}%
+  \mbox{%
+    \raisebox{-0.5\height}{%
+      \includegraphics[height=0.30in,
+        trim=465bp 80bp 490bp 75bp,clip]{assets/logos/tsinghua-emblem.jpg}}%
+    \hspace{7pt}%
+    \raisebox{-0.5\height}{%
+      \includegraphics[height=0.32in,
+        trim=0bp 0bp 0bp 120bp,clip]{assets/logos/tsinghua-ai-agent-group.jpeg}}%
+    \hspace{7pt}%
+    \raisebox{-0.5\height}{%
+      \fontfamily{Montserrat-LF}\fontseries{medium}\fontshape{n}%
+      \fontsize{10.5}{12}\selectfont\color{accent}%
+      \textls[10]{\groupname}}%
+  }%
 }
 
 % Replace these placeholders with the actual title and author information.
@@ -46,9 +45,10 @@
 \author[1]{Second Author}
 \author[1,\dagger]{Corresponding Author}
 \affiliation[1]{\groupname, Tsinghua University}
-\authornote[\dagger]{Corresponding author}
 \date{\today}
-\correspondence{\email{author@example.com}} % Replace with the contact email.
+% Replace the example emails; each role has its own line in the abstract panel.
+\metadata[First author]{\email{first@example.com}}
+\metadata[Corresponding author]{$^{\dagger}$\,\email{corresponding@example.com}}
 % Uncomment after replacing the example values:
 % \metadata[Code]{\url{https://github.com/your-org/your-project}}
 % \metadata[Project]{\url{https://example.com}}

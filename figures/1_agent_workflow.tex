@@ -1,0 +1,37 @@
+\begin{figure}[htbp]
+  \centering
+  % Native vector artwork; sizes follow the surrounding text column.
+  \begin{tikzpicture}[
+    x=0.083333\linewidth,y=1cm,
+    module/.style={draw=accent!65,fill=accent!4,line width=0.6pt,
+      rounded corners=2pt,text width=2.1cm,minimum height=30pt,
+      inner sep=5pt,align=center,font=\small},
+    endpoint/.style={module,draw=black!35,fill=white,text width=1.0cm},
+    flow/.style={-{Stealth[length=4pt,width=3pt]},line width=0.7pt,draw=accent},
+    label/.style={font=\footnotesize,fill=white,inner sep=2pt,text=black!75}
+  ]
+    \node[endpoint] (task) at (0.7,0) {\textbf{Task}};
+    \node[module] (planner) at (3.5,0)
+      {\planner{}\\[2pt]{\footnotesize Choose an action}};
+    \node[module] (executor) at (7,0)
+      {\executor{}\\[2pt]{\footnotesize Run selected tool}};
+    \node[endpoint,text width=1.2cm] (answer) at (11,0)
+      {\textbf{Answer}};
+    \node[module,text width=3.4cm] (memory) at (5.25,-1.55)
+      {\memory{}\\[2pt]{\footnotesize Update interaction history}};
+
+    \draw[flow] (task.east) -- (planner.west);
+    \draw[flow] (planner.east) -- node[label,above]{action} (executor.west);
+    \draw[flow] (planner.north) -- (3.5,0.95)
+      -- node[label,above]{stop and return} (11,0.95) -- (answer.north);
+    \draw[flow] (executor.south) -- (7,-1.55)
+      node[pos=0.45,label,right]{observation} -- (memory.east);
+    \draw[flow] (memory.west) -- (3.5,-1.55) --
+      node[label,left]{history} (planner.south);
+  \end{tikzpicture}
+  \vspace{1pt}
+  \caption{Illustrative agent workflow. The planner selects a tool action
+  or returns an answer. Tool observations update memory before the next
+  planning step.}
+  \label{fig:workflow}
+\end{figure}

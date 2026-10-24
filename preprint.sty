@@ -5,7 +5,7 @@
 %% Body layout from arXiv 2610.18141 (COLM 2026 preprint style + that paper's
 %% preamble); title page and accents from arXiv 2605.09965 (a report class):
 %%   * Libertinus Serif text/headings and matching math, Inconsolata code
-%%   * 11pt body on 13pt leading; original accents and entity styles retained
+%%   * NeurIPS 2026 type sizes and leading: 10pt body on 11pt leading
 %%   * 5.5in single column (or [wide]: 6.5in), no paragraph indent
 %%   * first page: optional logos, title framed by a thick and a thin rule,
 %%     keyed authors/affiliations, abstract in a rounded box with metadata
@@ -175,8 +175,8 @@
 \newcommand{\appendixname@preprint}{Appendix}
 \newcommand{\preprint@appendixheading}{%
   \par\noindent
-  {\fontsize{18}{22}\selectfont\rmfamily\bfseries\color{accent}\appendixname@preprint\par}%
-  \vspace{5mm}%
+  {\LARGE\rmfamily\bfseries\color{accent}\appendixname@preprint\par}%
+  \vspace{6pt}%
   \phantomsection@preprint
   \addcontentsline{toc}{section}{\appendixname@preprint}%
 }
@@ -338,28 +338,28 @@
   {\setlength{\parskip}{0pt}%
    \@titletoprule
    \vspace{\@titlegapabove}%
-   {\centering\fontsize{22}{26}\selectfont\rmfamily\bfseries \@title\par}%
+   {\centering\LARGE\rmfamily\bfseries \@title\par}%
    \vspace{\@titlegapbelow}%
    \@titlebottomrule}
-  \vspace{5mm}
-  \begin{center}
+  % Explicit paragraph spacing keeps authors and affiliations together.
+  \vspace{10pt}
+  {\centering\setlength{\parskip}{0pt}%
     \if@preprint@anon
-      {\rmfamily\mdseries Anonymous authors\\[2pt]
+      {\normalsize\rmfamily\mdseries Anonymous authors\\[2pt]
        \mdseries\small Paper under double-blind review\par}
     \else
-      {\fontsize{11}{13}\selectfont\rmfamily\mdseries
+      {\normalsize\rmfamily\mdseries
        \@printlist{\@authorlist}\par}
       \ifx\@affiliationlist\@empty\else
-        \vspace{2mm}
-        {\small\rmfamily\@printlist{\@affiliationlist}\par}
+        \vspace{3pt}
+        {\normalsize\rmfamily\@printlist{\@affiliationlist}\par}
       \fi
       \ifx\@authornotelist\@empty\else
-        \vspace{2mm}
+        \vspace{3pt}
         {\small\@printlist{\@authornotelist}\par}
       \fi
     \fi
-  \end{center}
-  \vspace{2mm}%
+  }%
 }
 
 % Abstract: rounded light-purple panel (no frame), centred serif heading, then the
@@ -368,13 +368,13 @@
   \@ifpackageloaded{tcolorbox}{}{\RequirePackage{tcolorbox}}%
   \tcbuselibrary{skins}%
   \newtcolorbox{preprintabstractbox}{enhanced,colback=abstractbg,colframe=abstractbg,
-    boxrule=0pt,arc=2.5mm,left=6mm,right=6mm,top=4mm,bottom=4mm,
-    grow to left by=1.5pt,grow to right by=1.5pt,
-    before skip=2mm,after skip=6mm}}
+    boxrule=0pt,arc=2.5mm,boxsep=0pt,
+    left=8pt,right=8pt,top=6pt,bottom=6pt,
+    before skip=10pt,after skip=12pt}}
 \renewenvironment{abstract}{%
   \begin{preprintabstractbox}
-  \setlength{\parskip}{0.4em}%
-  \centerline{\fontsize{12}{14}\selectfont\rmfamily\bfseries\color{accent}Abstract}%
+  \normalsize
+  \centerline{\large\rmfamily\bfseries\color{accent}Abstract}%
   \vspace{1mm}%
 }{%
   \par
@@ -400,22 +400,30 @@
   \fi}
 
 % ---------------------------------------------------------------- font sizes
-% Compact, readable body: 11pt text on 13pt leading.
+% Type sizes, leading and display spacing match the official NeurIPS 2026
+% style. Keep the group template's font families, accents and title artwork.
+% Reference: https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip
 \renewcommand{\normalsize}{%
-  \@setfontsize\normalsize{11pt}{13pt}%
-  \abovedisplayskip 7pt plus 2pt minus 3pt%
+  \@setfontsize\normalsize{10pt}{11pt}%
+  \abovedisplayskip 7pt plus 2pt minus 5pt%
   \belowdisplayskip \abovedisplayskip
   \abovedisplayshortskip 0pt plus 3pt%
-  \belowdisplayshortskip 4pt plus 2pt minus 2pt}
-\renewcommand{\small}{\@setfontsize\small{9.5pt}{11.5pt}}
-\renewcommand{\footnotesize}{\@setfontsize\footnotesize{9pt}{11pt}}
-\renewcommand{\scriptsize}{\@setfontsize\scriptsize{7pt}{8.5pt}}
-\renewcommand{\tiny}{\@setfontsize\tiny{6pt}{7.5pt}}
+  \belowdisplayshortskip 4pt plus 3pt minus 3pt}
+\renewcommand{\small}{%
+  \@setfontsize\small{9pt}{10pt}%
+  \abovedisplayskip 6pt plus 1.5pt minus 4pt%
+  \belowdisplayskip \abovedisplayskip
+  \abovedisplayshortskip 0pt plus 2pt%
+  \belowdisplayshortskip 3pt plus 2pt minus 2pt}
+% NeurIPS 2026's final footnotesize definition is 8pt on 9.5pt leading.
+\renewcommand{\footnotesize}{\@setfontsize\footnotesize{8pt}{9.5pt}}
+\renewcommand{\scriptsize}{\@setfontsize\scriptsize{7pt}{8pt}}
+\renewcommand{\tiny}{\@setfontsize\tiny{6pt}{7pt}}
 \renewcommand{\large}{\@setfontsize\large{12pt}{14pt}}
-\renewcommand{\Large}{\@setfontsize\Large{14pt}{17pt}}
-\renewcommand{\LARGE}{\@setfontsize\LARGE{18pt}{22pt}}
-\renewcommand{\huge}{\@setfontsize\huge{22pt}{26pt}}
-\renewcommand{\Huge}{\@setfontsize\Huge{26pt}{31pt}}
+\renewcommand{\Large}{\@setfontsize\Large\@xivpt{16pt}}
+\renewcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{20pt}}
+\renewcommand{\huge}{\@setfontsize\huge\@xxpt{23pt}}
+\renewcommand{\Huge}{\@setfontsize\Huge\@xxvpt{28pt}}
 \normalsize
 
 % ---------------------------------------------------------------- sections
@@ -423,17 +431,17 @@
 % Accent-purple serif headings; run-in paragraphs in black serif semibold.
 \def\section{\@startsection {section}{1}{\z@}{-2.0ex plus
     -0.5ex minus -.2ex}{1.5ex plus 0.3ex
-minus0.2ex}{\fontsize{12.5}{15}\selectfont\rmfamily\bfseries\color{accent}\raggedright}}
+minus0.2ex}{\large\rmfamily\bfseries\color{accent}\raggedright}}
 
 \def\subsection{\@startsection{subsection}{2}{\z@}{-1.8ex plus
--0.5ex minus -.2ex}{0.8ex plus .2ex}{\fontsize{11}{13}\selectfont\rmfamily\bfseries\color{accent}\raggedright}}
+-0.5ex minus -.2ex}{0.8ex plus .2ex}{\normalsize\rmfamily\bfseries\color{accent}\raggedright}}
 \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-1.5ex
 plus      -0.5ex minus -.2ex}{0.5ex plus
 .2ex}{\normalsize\rmfamily\bfseries\color{accent}\raggedright}}
 \def\paragraph{\@startsection{paragraph}{4}{\z@}{1.5ex plus
 0.5ex minus .2ex}{-1em}{\normalsize\rmfamily\bfseries}}
 \def\subparagraph{\@startsection{subparagraph}{5}{\z@}{1.5ex plus
-  0.5ex minus .2ex}{-1em}{\normalsize\it}}
+  0.5ex minus .2ex}{-1em}{\normalsize\rmfamily\bfseries}}
 
 % ---------------------------------------------------------------- footnotes
 \footnotesep 6.65pt %
@@ -447,7 +455,7 @@ plus      -0.5ex minus -.2ex}{0.5ex plus
 \partopsep 1pt plus 0.5pt minus 0.5pt
 \itemsep 2pt plus 1pt minus 0.5pt
 \parsep 2pt plus 1pt minus 0.5pt
-\parskip 4pt plus 1pt minus 1pt
+\parskip 5.5pt
 
 \leftmargin3pc
 \leftmargini\leftmargin \leftmarginii 2em
@@ -497,20 +505,22 @@ plus      -0.5ex minus -.2ex}{0.5ex plus
 % Standard \textbf and \rpsStrong retain the surrounding font family.
 % The serif family's bold weight is Semibold; no table-specific override.
 
-% Captions: small text, "Figure 1" / "Table 1" label in accent serif semibold.
+% NeurIPS uses normal-size captions; retain the accent label and compact gap.
 \DeclareCaptionFont{preprintlabel}{\rmfamily\bfseries\color{accent}}
-\captionsetup{font=small,labelfont=preprintlabel,labelsep=quad,
+\captionsetup{font=normalsize,labelfont=preprintlabel,labelsep=quad,
   singlelinecheck=false}
 % Compact separation from the content: captions below figures, above tables.
 \captionsetup[figure]{position=bottom,skip=4pt}
 \captionsetup[table]{position=top,skip=4pt}
 % Same label style for algorithm captions (float's "ruled" style).
-\DeclareCaptionStyle{ruled}{font=small,labelfont=preprintlabel,labelsep=quad,
+\DeclareCaptionStyle{ruled}{font=normalsize,labelfont=preprintlabel,labelsep=quad,
   singlelinecheck=off}
 
 \if@preprint@rps
-% Boxes: thin black frame, slightly smaller inner padding for a 5.5in column.
-\tcbset{rpsbase/.append style={left=5pt,right=5pt,top=3pt,bottom=3pt}}
+% Shared text insets and title-bar rhythm across all writing-style boxes.
+\tcbset{rpsbase/.append style={boxsep=0pt,left=8pt,right=8pt,
+  top=6pt,bottom=6pt,toptitle=3pt,bottomtitle=3pt,
+  before skip=8pt,after skip=8pt}}
 % Writing-style boxes follow the template accent: purple title bars and
 % frames (black under [monochrome]); the question box gets a faint purple tint.
 \colorlet{rpsAccent}{accent}
@@ -519,15 +529,15 @@ plus      -0.5ex minus -.2ex}{0.5ex plus
 % Titled boxes retain their original accents with the shared serif title face.
 \renewtcolorbox{rpsprotocol}[2][]{rpsbase,
   colback=white,colframe=rpsAccent,
-  colbacktitle=rpsAccent,coltitle=white,fonttitle=\rmfamily\bfseries,
+  colbacktitle=rpsAccent,coltitle=white,fonttitle=\normalsize\rmfamily\bfseries\strut,
   title={#2},#1}
 \renewtcolorbox{rpsinsight}[2][]{rpsbase,
   colback=rpsInsight!4!white,colframe=rpsInsight,
-  colbacktitle=rpsInsight,coltitle=white,fonttitle=\rmfamily\bfseries,
+  colbacktitle=rpsInsight,coltitle=white,fonttitle=\normalsize\rmfamily\bfseries\strut,
   title={#2},#1}
 \renewtcblisting{rpsprompt}[2][]{rpsbase,
   colback=rpsPrompt!5!white,colframe=rpsPrompt,
-  colbacktitle=rpsPrompt,coltitle=white,fonttitle=\rmfamily\bfseries,
+  colbacktitle=rpsPrompt,coltitle=white,fonttitle=\normalsize\rmfamily\bfseries\strut,
   title={#2},listing only,
   listing options={language={},basicstyle=\ttfamily\footnotesize,
     breaklines=true,columns=fullflexible,keepspaces=true,
